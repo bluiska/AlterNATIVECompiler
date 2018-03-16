@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="D:/University/Year 2/FOPL/Semester 2/Compiler/antlr-4.7.1-complete.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/AlterNATIVE"/>
+	<classpathentry exported="true" kind="lib" path="D:/University/Year 2/FOPL/AlterNATIVECompiler/bin/gson-2.8.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
