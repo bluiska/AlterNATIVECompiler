@@ -1,6 +1,11 @@
 package alterNATIVE;
 
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -23,19 +28,20 @@ import alterNATIVE.*;
 
 public class Main {
 	
+	
     public static void main(String[] args) throws Exception {
-        // create a CharStream that reads from standard input
         @SuppressWarnings("deprecation")
-		ANTLRInputStream input = new ANTLRInputStream(System.in);
-        // create a lexer that feeds off of input CharStream
-        AlterNATIVELexer lexer = new AlterNATIVELexer(input);
-        // create a buffer of tokens pulled from the lexer
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        // create a parser that feeds off the tokens buffer
-        AlterNATIVEParser parser = new AlterNATIVEParser(tokens);
         
-        ParseTree tree = parser.program(); // begin parsing at init rule
-
+        //Instanciate neccessary objects
+        Menu menu = new Menu();
+        ProgramReader programReader = new ProgramReader();
+        
+        menu.displayOptions(false);
+        int selection = menu.getSelection();
+        menu.handleSelection(selection);
+        
+       // AntlrMain antlrMain = new AntlrMain();
+		
         // Create a generic parse tree walker that can trigger callbacks
         ParseTreeWalker walker = new ParseTreeWalker();
         
@@ -43,7 +49,7 @@ public class Main {
         JPanel panel = new JPanel();
         
         TreeViewer viewr = new TreeViewer(Arrays.asList(
-                parser.getRuleNames()),tree.getChild(2));
+                parser.getRuleNames()),tree);
         
         viewr.setScale(2);//scale a little
         viewr.setAlignmentX(4);
@@ -58,14 +64,14 @@ public class Main {
         walker.walk(new IndentedDisplay(Arrays.asList(parser.getRuleNames())), tree);
         
         
-     
         
+        //walker.walk(new JavascriptWorker(), tree);
+ 
+       System.out.println("\n\nJSON:\n\n");
         
-        System.out.println("\n\nJSON:\n\n");
-        
-        System.out.println(toJson(tree));
+       System.out.println(toJson(tree));
 
-        System.out.println(); // print a \n after translation
+       System.out.println(); // print a \n after translation
     }
 
 
